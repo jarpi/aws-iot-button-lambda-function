@@ -13,21 +13,21 @@ const alertText = process.env.message;
 exports.handler =  (event, context, callback) => {
     console.dir(event);
     return getCredentials()
-    .then(function(clientCredentials){
+    .then((clientCredentials) => {
         console.dir(clientCredentials);
         return getToken(clientCredentials);
     })  
-    .then(function(token){
+    .then((token) => {
         return publishAlert(token);
     })  
-    .then(function(statusResult){
+    .then((statusResult) => {
             console.dir(statusResult);
             return;
     })  
-    .then(function(){
+    .then(() => {
         return callback(null, "Success!");
     })  
-        .catch(function(err){
+        .catch((err) => {
             console.dir('Error catch');
             console.dir(err);
         });
@@ -88,3 +88,4 @@ const publishAlert = (token) => {
     });
     return doRequest(reqOptions, body);
 };
+
